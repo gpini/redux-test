@@ -1,8 +1,10 @@
 import _ from 'lodash';
-import array from './scripts/array'
+import * as lib from './scripts/array'
 require('./styles/style.css')
 
-const pippo = _.map(array, function(n) { return n * 3; });
-console.log(pippo);
+//debugger;
+lib.log(lib.array);
+const mappedArray = _.map(lib.array, function(n) { return n * 3; });
+lib.log(mappedArray);
 
-document.write("It works.");
+document.write("It worked.");

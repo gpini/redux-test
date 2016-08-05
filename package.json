@@ -4,7 +4,9 @@
   "description": "Test using redux and other Javascript technolgogies",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "webpack-dev-server --devtool source-map --inline --hot",
+    "dist": "webpack"
   },
   "repository": {
     "type": "git",
