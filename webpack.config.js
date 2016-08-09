@@ -17,8 +17,8 @@ var config = {
       exclude: /node_modules/,
       loader: 'babel-loader',
     }, {
-      test: /\.css$/,
-      loader: "style!css"
+      test: /\.sass$/,
+      loader: "style!css!sass"
     }]
   }
 };

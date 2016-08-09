@@ -3,6 +3,7 @@ Test using redux and other Javascript technologies.
 * Webpack
 * ES6
 * Git
+* SASS
 
 ## Install
 Run the following commands

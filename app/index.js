@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import * as lib from './scripts/array'
-require('./styles/style.css')
+require('./styles/style.sass')
 
 //debugger;
 lib.log(lib.array);
