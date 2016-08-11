@@ -1,10 +1,15 @@
 import _ from 'lodash';
-import * as lib from './scripts/array'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import BattleField from './scripts/battlefield.jsx';
 require('./styles/style.sass')
 
-//debugger;
-lib.log(lib.array);
-const mappedArray = _.map(lib.array, function(n) { return n * 3; });
-lib.log(mappedArray);
+const heroes = [{
+    name: 'Batman',
+    hp: 15,
+  }, {
+    name: 'Iron Man',
+    hp: 10
+}];
 
-document.write("It worked.");
+ReactDOM.render(<BattleField heroes={heroes} />, document.getElementById('app'));
