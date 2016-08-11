@@ -5,7 +5,7 @@ export default class BattleField extends React.Component {
     render() {
       return <div className="battlefield">
         {this.props.heroes.map(hero => {
-          return <Hero hero={ hero } />
+          return <Hero hero={ hero } key={ hero.id } />
         })}
       </div>
     }

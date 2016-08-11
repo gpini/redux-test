@@ -4,6 +4,8 @@ Test using redux and other Javascript technologies.
 * ES6
 * Git
 * SASS
+* React
+* ImmutableJS
 
 ## Install
 Run the following commands
