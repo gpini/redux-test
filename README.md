@@ -2,9 +2,10 @@
 Test using redux and other Javascript technologies.
 * Webpack
 * ES6
-* Git
+* GIT
 * SASS
 * React
+* Redux
 * ImmutableJS
 
 ## Install

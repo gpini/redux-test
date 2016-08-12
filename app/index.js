@@ -1,23 +1,38 @@
 import { List } from 'immutable';
+import uuid from 'uuid';
 import { createStore } from 'redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import BattleField from './scripts/components/battlefield.jsx';
-require('./styles/style.sass')
+import AddHero from './scripts/components/addHero.jsx';
+require('./styles/style.sass');
+import heroes from './scripts/reducers/heroes.js';
 
-let heroes = new List();
-
-heroes = heroes.push({
-    id: 1,
+let initialHeroes = new List([
+  {
+    id: uuid.v4(),
     name: 'Batman',
     hp: 15,
-});
-heroes = heroes.push({
-    id: 2,
+  },
+  {
+    id: uuid.v4(),
     name: 'Iron Man',
     hp: 10
+  }
+]);
+
+const store = createStore(heroes, initialHeroes);
+const render = () => {
+  ReactDOM.render(
+    <div>
+      <AddHero store={ store } />
+      <BattleField heroes={store.getState()} />
+    </div>,
+    document.getElementById('app'));
+}
+
+render();
+store.subscribe(() => {
+  render();
+  console.log(store.getState());
 });
-
-//createStore();
-
-ReactDOM.render(<BattleField heroes={heroes} />, document.getElementById('app'));
