@@ -26,7 +26,7 @@ const render = () => {
   ReactDOM.render(
     <div>
       <AddHero store={ store } />
-      <BattleField heroes={store.getState()} />
+      <BattleField store={ store } />
     </div>,
     document.getElementById('app'));
 }
@@ -34,5 +34,5 @@ const render = () => {
 render();
 store.subscribe(() => {
   render();
-  console.log(store.getState());
+  // console.log(store.getState());
 });
