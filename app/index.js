@@ -4,8 +4,10 @@ import { createStore } from 'redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import BattleField from './scripts/components/battlefield.jsx';
-import AddHero from './scripts/components/addHero.jsx';
+import { Router, Route, Link, browserHistory } from 'react-router';
+import Heroes from './scripts/components/heroes.jsx';
+import Battle from './scripts/components/battle.jsx';
+import TabBar from './scripts/components/tabbar.jsx';
 require('./styles/style.sass');
 import heroes from './scripts/reducers/heroes.js';
 
@@ -25,9 +27,11 @@ let initialHeroes = new List([
 const store = createStore(heroes, initialHeroes);
 ReactDOM.render(
   <Provider store={ store }>
-    <div>
-      <AddHero />
-      <BattleField />
-    </div>
+    <Router history={browserHistory}>
+      <Route component={ TabBar } >
+        <Route path="/heroes" component={ Heroes } />
+        <Route path="/" component={ Battle } />
+      </Route>
+    </Router>
   </Provider>,
   document.getElementById('app'));

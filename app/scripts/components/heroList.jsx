@@ -8,17 +8,15 @@ const mapStateToProps = (state) => {
   }
 };
 
-class BattleField extends React.Component {
+class HeroList extends React.Component {
     render() {
       const { heroes } = this.props;
-      return <div className="battlefield">
-        {
-          heroes.map(hero => {
+      return <div className="hero-list">
+        {heroes.map(hero => {
           return <Hero hero={ hero } key={ hero.id } />
-          })
-        }
+        })}
       </div>
     }
 };
 
-export default connect(mapStateToProps)(BattleField);
+export default connect(mapStateToProps)(HeroList);
