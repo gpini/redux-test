@@ -1,10 +1,24 @@
 import React from 'react';
 import _ from 'lodash';
 import uuid from 'uuid';
+import { connect } from 'react-redux';
 
-export default class AddHero extends React.Component {
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onTodoAdd: (name, hp) => {
+      dispatch({
+        type: 'ADD_HERO',
+        id: uuid.v4(),
+        name: name,
+        hp: hp
+      });
+    }
+  }
+};
+
+class AddHero extends React.Component {
     render() {
-      const { store } = this.props;
+      const { store, onTodoAdd } = this.props;
       let nameInput;
       let hpInput;
       return (
@@ -19,12 +33,7 @@ export default class AddHero extends React.Component {
               if (!nameInput.value || !hpInput.value) {
                 return;
               }
-              store.dispatch({
-                type: 'ADD_HERO',
-                id: uuid.v4(),
-                name: nameInput.value,
-                hp: hpInput.value
-              });
+              onTodoAdd(nameInput.value, hpInput.value);
               nameInput.value = '';
               hpInput.value = '';
             }
@@ -33,3 +42,5 @@ export default class AddHero extends React.Component {
       )
     }
 };
+
+export default connect(null, mapDispatchToProps)(AddHero);

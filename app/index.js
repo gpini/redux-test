@@ -3,6 +3,7 @@ import uuid from 'uuid';
 import { createStore } from 'redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import BattleField from './scripts/components/battlefield.jsx';
 import AddHero from './scripts/components/addHero.jsx';
 require('./styles/style.sass');
@@ -22,17 +23,11 @@ let initialHeroes = new List([
 ]);
 
 const store = createStore(heroes, initialHeroes);
-const render = () => {
-  ReactDOM.render(
+ReactDOM.render(
+  <Provider store={ store }>
     <div>
-      <AddHero store={ store } />
-      <BattleField store={ store } />
-    </div>,
-    document.getElementById('app'));
-}
-
-render();
-store.subscribe(() => {
-  render();
-  // console.log(store.getState());
-});
+      <AddHero />
+      <BattleField />
+    </div>
+  </Provider>,
+  document.getElementById('app'));
