@@ -1,6 +1,6 @@
-import { List } from 'immutable';
+import { List, Map } from 'immutable';
 import uuid from 'uuid';
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -10,12 +10,15 @@ import Battle from './scripts/components/battle.jsx';
 import TabBar from './scripts/components/tabbar.jsx';
 require('./styles/style.sass');
 import heroes from './scripts/reducers/heroes.js';
+import battlefield from './scripts/reducers/battlefield.js';
 
+const batmanId = uuid.v4();
+const batmanHp = 15;
 let initialHeroes = new List([
   {
-    id: uuid.v4(),
+    id: batmanId,
     name: 'Batman',
-    hp: 15,
+    hp: batmanHp,
   },
   {
     id: uuid.v4(),
@@ -24,7 +27,13 @@ let initialHeroes = new List([
   }
 ]);
 
-const store = createStore(heroes, initialHeroes);
+const reducers = combineReducers({
+  heroes: heroes,
+  battlefield: battlefield
+});
+const store = createStore(reducers, {
+  heroes: initialHeroes
+});
 ReactDOM.render(
   <Provider store={ store }>
     <Router history={browserHistory}>

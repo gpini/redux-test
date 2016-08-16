@@ -1,20 +1,41 @@
 import React from 'react';
 import Hero from './hero.jsx';
+import AddToBattle from './addToBattle.jsx'
 import { connect } from 'react-redux';
+import { Map } from 'immutable';
 
 const mapStateToProps = (state) => {
   return {
-    heroes: state
+    battlefield: state.battlefield,
+    heroes: state.heroes
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onBattleAdd: (id, hp) => {
+      dispatch({
+        type: 'ADD_HERO_TO_BATTLE',
+        id: heroId,
+        hp: hp
+      })
+    }
   }
 };
 
 class BattleField extends React.Component {
     render() {
-      const { heroes } = this.props;
+      const { battlefield, heroes } = this.props;
+      let selectedHero;
       return <div className="battlefield">
+        <AddToBattle />
         {
-          heroes.map(hero => {
-          return <Hero hero={ hero } key={ hero.id } />
+          heroes.filter( hero => {
+            return battlefield.get(hero.id) != null;
+          }).map( hero => {
+            return <div key={ hero.id }>
+              { hero.name } - { battlefield.get(hero.id) }
+            </div>
           })
         }
       </div>
