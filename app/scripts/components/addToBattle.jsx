@@ -36,7 +36,9 @@ class AddToBattle extends React.Component {
           }).get(0);
         }}/>
       <button onClick={() => {
-        onBattleAdd(selectedHero);
+          if (selectedHero) {
+            onBattleAdd(selectedHero);
+          }
       }}>Add to battle</button>
       </div>
     }

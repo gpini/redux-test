@@ -38,7 +38,9 @@ class SelectTarget extends React.Component {
           }).get(0);
         }}/>
       <button onClick={() => {
-        onHeroHit(selectedHero, 3);
+        if (selectedHero) {
+          onHeroHit(selectedHero, 3);
+        }
       }}>Hit</button>
       </div>
     }
