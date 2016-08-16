@@ -1,6 +1,7 @@
 import React from 'react';
 import Hero from './hero.jsx';
 import AddToBattle from './addToBattle.jsx'
+import SelectTarget from './selectTarget.jsx'
 import { connect } from 'react-redux';
 import { Map } from 'immutable';
 
@@ -35,6 +36,7 @@ class BattleField extends React.Component {
           }).map( hero => {
             return <div key={ hero.id }>
               { hero.name } - { battlefield.get(hero.id) }
+              <SelectTarget self={ hero }></SelectTarget>
             </div>
           })
         }

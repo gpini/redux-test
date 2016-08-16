@@ -5,12 +5,12 @@ export default function battlefield(state = new Map(), action) {
     case 'ADD_HERO_TO_BATTLE':
       return state.set(action.id, action.hp);
     case 'HIT_HERO':
-      let currentHp = state.get(action.dest);
+      let currentHp = state.get(action.target);
       currentHp -= action.power;
       if (currentHp <= 0) {
-        state.delete(action.dest);
+        return state.delete(action.target);
       }
-      return state.set(action.dest, currentHp);
+      return state.set(action.target, currentHp);
     default:
       return state;
   }
