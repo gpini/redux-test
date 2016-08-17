@@ -35,7 +35,7 @@ class BattleField extends React.Component {
             return battlefield.get(hero.id) != null;
           }).map( hero => {
             return <div key={ hero.id }>
-              { hero.name } - { battlefield.get(hero.id) }
+              { hero.name } - { battlefield.get(hero.id) } - { hero.power }
               <SelectTarget self={ hero }></SelectTarget>
             </div>
           })

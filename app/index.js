@@ -19,11 +19,13 @@ let initialHeroes = new List([
     id: batmanId,
     name: 'Batman',
     hp: batmanHp,
+    power: 5
   },
   {
     id: uuid.v4(),
     name: 'Iron Man',
-    hp: 10
+    hp: 10,
+    power: 4
   }
 ]);
 

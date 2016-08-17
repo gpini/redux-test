@@ -1,16 +1,15 @@
 import React from 'react';
 import _ from 'lodash';
-import uuid from 'uuid';
 import { connect } from 'react-redux';
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onTodoAdd: (name, hp) => {
+    onHeroAdd: (name, hp, power) => {
       dispatch({
         type: 'ADD_HERO',
-        id: uuid.v4(),
-        name: name,
-        hp: hp
+        name,
+        hp,
+        power
       });
     }
   }
@@ -18,9 +17,10 @@ const mapDispatchToProps = (dispatch) => {
 
 class AddHero extends React.Component {
     render() {
-      const { store, onTodoAdd } = this.props;
+      const { store, onHeroAdd } = this.props;
       let nameInput;
       let hpInput;
+      let powerInput;
       return (
         <div className="addHero" >
           <input ref={node => {
@@ -29,13 +29,17 @@ class AddHero extends React.Component {
           <input ref={node => {
               hpInput = node;
             }} type="number"/>
+          <input ref={node => {
+              powerInput = node;
+            }} type="number"/>
           <button onClick={() => {
               if (!nameInput.value || !hpInput.value) {
                 return;
               }
-              onTodoAdd(nameInput.value, hpInput.value);
+              onHeroAdd(nameInput.value, hpInput.value, powerInput.value);
               nameInput.value = '';
               hpInput.value = '';
+              powerInput.value = '';
             }
           }>Add Hero</button>
         </div>

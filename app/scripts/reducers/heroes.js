@@ -1,5 +1,6 @@
 import {List} from 'immutable';
 import _ from 'lodash';
+import uuid from 'uuid';
 
 const hero = function (state, action) {
   switch (action.type) {
@@ -7,7 +8,8 @@ const hero = function (state, action) {
       return {
         name: action.name,
         hp: action.hp,
-        id: action.id
+        id: uuid.v4(),
+        power: action.power
       };
     default:
       return state;

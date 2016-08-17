@@ -12,11 +12,11 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onHeroHit: (targetHero, power) => {
+    onHeroHit: (sourceHero, targetHero) => {
       dispatch({
         type: 'HIT_HERO',
-        target: targetHero.id,
-        power
+        target: targetHero,
+        source: sourceHero
       })
     }
   }
@@ -39,7 +39,7 @@ class SelectTarget extends React.Component {
         }}/>
       <button onClick={() => {
         if (selectedHero) {
-          onHeroHit(selectedHero, 3);
+          onHeroHit(self, selectedHero);
         }
       }}>Hit</button>
       </div>

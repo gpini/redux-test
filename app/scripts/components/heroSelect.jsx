@@ -11,31 +11,31 @@ const mapStateToProps = (state, ownProps) => {
 
 const NULL_VALUE = '';
 
-const HeroSelect = React.createClass({
+class HeroSelect extends React.Component {
     updateValue(value) {
       this.setState({
         value: value
       })
-    },
+    }
     getValue() {
-      if (!this.state || !this.state.value) {
-        return NULL_VALUE;
-      }
       return this.state.value;
-    },
+    }
     resetValue() {
-      this.setState({
-        value: NULL_VALUE
-      });
-    },
-    componentDidUpdate() {
-      const heroFromValue = this.props.heroes.find( hero => {
+      this.updateValue(NULL_VALUE);
+    }
+    componentWillMount() {
+      // Set the initial value for the state
+      this.resetValue();
+    }
+    componentWillReceiveProps(nextProps) {
+      const { heroes } = nextProps;
+      const heroFromValue = heroes.find( hero => {
         return hero.id === this.getValue();
       });
-      if (this.getValue() && !heroFromValue) {
+      if (this.getValue() !== NULL_VALUE && !heroFromValue) {
         this.resetValue();
       }
-    },
+    }
     render() {
       const { heroes, onHeroSelect } = this.props;
       let input;
@@ -57,6 +57,6 @@ const HeroSelect = React.createClass({
         })}
       </select>
     }
-})
+}
 
 export default connect(mapStateToProps)(HeroSelect);

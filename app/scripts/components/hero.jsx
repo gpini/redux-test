@@ -6,7 +6,8 @@ export default class Hero extends React.Component {
       return (
         <div className="hero" >
           <div> { hero.name } </div>
-          <div> { hero.hp } </div>
+          <div> HP { hero.hp } </div>
+          <div> Power { hero.power } </div>
         </div>
       )
     }
