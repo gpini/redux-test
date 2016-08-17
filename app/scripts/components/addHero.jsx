@@ -1,16 +1,12 @@
 import React from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
+import { addHero } from '../actions/heroes.js'
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onHeroAdd: (name, hp, power) => {
-      dispatch({
-        type: 'ADD_HERO',
-        name,
-        hp,
-        power
-      });
+      dispatch(addHero(name, hp, power));
     }
   }
 };

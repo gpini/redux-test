@@ -1,6 +1,7 @@
 import React from 'react';
 import HeroSelect from './HeroSelect.jsx'
 import { connect } from 'react-redux';
+import { hitHero } from '../actions/battlefield.js';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -13,11 +14,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onHeroHit: (sourceHero, targetHero) => {
-      dispatch({
-        type: 'HIT_HERO',
-        target: targetHero,
-        source: sourceHero
-      })
+      dispatch(hitHero(sourceHero, targetHero));
     }
   }
 };

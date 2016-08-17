@@ -1,6 +1,7 @@
 import React from 'react';
 import HeroSelect from './HeroSelect.jsx'
 import { connect } from 'react-redux';
+import { addHeroToBattle } from '../actions/battlefield.js';
 
 const mapStateToProps = (state) => {
   return {
@@ -12,11 +13,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onBattleAdd: (selectedHero) => {
-      dispatch({
-        type: 'ADD_HERO_TO_BATTLE',
-        id: selectedHero.id,
-        hp: selectedHero.hp
-      })
+      dispatch(addHeroToBattle(selectedHero.id, selectedHero.hp));
     }
   }
 };
