@@ -1,6 +1,7 @@
 import { List, Map } from 'immutable';
 import uuid from 'uuid';
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -33,9 +34,13 @@ const reducers = combineReducers({
   heroes: heroes,
   battlefield: battlefield
 });
-const store = createStore(reducers, {
-  heroes: initialHeroes
-});
+const store = createStore(
+  reducers,
+  {
+    heroes: initialHeroes
+  },
+  applyMiddleware(thunk)
+);
 ReactDOM.render(
   <Provider store={ store }>
     <Router history={browserHistory}>

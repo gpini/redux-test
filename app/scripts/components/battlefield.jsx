@@ -1,7 +1,8 @@
 import React from 'react';
 import Hero from './hero.jsx';
-import AddToBattle from './addToBattle.jsx'
-import SelectTarget from './selectTarget.jsx'
+import AddToBattle from './addToBattle.jsx';
+import SelectTarget from './selectTarget.jsx';
+import { hideHero } from '../actions/battlefield.js';
 import { connect } from 'react-redux';
 import { Map } from 'immutable';
 
@@ -14,19 +15,15 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onBattleAdd: (id, hp) => {
-      dispatch({
-        type: 'ADD_HERO_TO_BATTLE',
-        id: heroId,
-        hp: hp
-      })
+    onHeroHide: (hero) => {
+      dispatch(hideHero(hero));
     }
   }
 };
 
 class BattleField extends React.Component {
     render() {
-      const { battlefield, heroes } = this.props;
+      const { battlefield, heroes, onHeroHide } = this.props;
       let selectedHero;
       return <div className="battlefield">
         <AddToBattle />
@@ -35,8 +32,13 @@ class BattleField extends React.Component {
             return battlefield.get(hero.id) != null;
           }).map( hero => {
             return <div key={ hero.id }>
-              { hero.name } - { battlefield.get(hero.id) } - { hero.power }
+              { hero.name } - { battlefield.get(hero.id).hp }/{ hero.hp } -
+                { hero.power }
+              <div>{ battlefield.get(hero.id).status }</div>
               <SelectTarget self={ hero }></SelectTarget>
+              <button onClick={ () => {
+                onHeroHide(hero);
+              }}>Hide</button>
             </div>
           })
         }
@@ -44,4 +46,4 @@ class BattleField extends React.Component {
     }
 };
 
-export default connect(mapStateToProps)(BattleField);
+export default connect(mapStateToProps, mapDispatchToProps)(BattleField);
