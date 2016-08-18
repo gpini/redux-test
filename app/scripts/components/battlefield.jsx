@@ -3,6 +3,7 @@ import Hero from './hero.jsx';
 import AddToBattle from './addToBattle.jsx';
 import SelectTarget from './selectTarget.jsx';
 import { hideHero } from '../actions/battlefield.js';
+import { HERO_STATUS } from '../reducers/battlefield.js';
 import { connect } from 'react-redux';
 import { Map } from 'immutable';
 
@@ -36,9 +37,14 @@ class BattleField extends React.Component {
                 { hero.power }
               <div>{ battlefield.get(hero.id).status }</div>
               <SelectTarget self={ hero }></SelectTarget>
-              <button onClick={ () => {
-                onHeroHide(hero);
-              }}>Hide</button>
+              <button disabled={
+                  battlefield.get(hero.id).status === HERO_STATUS.CHARGING ||
+                    battlefield.get(hero.id).status === HERO_STATUS.HIDING
+                }
+                onClick={ () => {
+                  onHeroHide(hero);
+                }
+              }>Hide</button>
             </div>
           })
         }

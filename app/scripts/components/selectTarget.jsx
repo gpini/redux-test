@@ -2,6 +2,7 @@ import React from 'react';
 import HeroSelect from './HeroSelect.jsx'
 import { connect } from 'react-redux';
 import { hitHero } from '../actions/battlefield.js';
+import { HERO_STATUS } from '../reducers/battlefield.js';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -34,11 +35,18 @@ class SelectTarget extends React.Component {
             return hero.id === selectedHeroId;
           }).get(0);
         }}/>
-      <button onClick={() => {
-        if (selectedHero) {
-          onHeroHit(self, selectedHero);
+      <button
+        disabled={
+          battlefield.get(self.id).status === HERO_STATUS.CHARGING ||
+            battlefield.get(self.id).status === HERO_STATUS.HIDING ||
+            battlefield.size < 2
         }
-      }}>Hit</button>
+        onClick={() => {
+          if (selectedHero) {
+            onHeroHit(self, selectedHero);
+          }
+        }
+      }>Hit</button>
       </div>
     }
 };
