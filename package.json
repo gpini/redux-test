@@ -7,7 +7,7 @@
     "test": "mocha --compilers js:babel-register --recursive app/scripts/tests/*.js",
     "test:watch": "npm test -- --watch",
     "serve": "webpack-dev-server -d --colors --inline --hot",
-    "dist": "webpack"
+    "dist": "NODE_ENV=production webpack"
   },
   "repository": {
     "type": "git",
@@ -38,6 +38,7 @@
     "babel-register": "^6.11.6",
     "chai": "^3.5.0",
     "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^1.0.1",
     "mocha": "^3.0.2",
     "node-sass": "^3.8.0",
     "sass-loader": "^4.0.0",
