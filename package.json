@@ -4,11 +4,11 @@
   "description": "Test using redux and other Javascript technolgogies",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --compilers js:babel-register --recursive app/scripts/tests/*.js",
+    "test": "./node_modules/.bin/mocha --compilers js:babel-register --recursive app/scripts/tests/*.js",
     "test:watch": "npm test -- --watch",
-    "serve": "webpack-dev-server -d --colors --inline --hot",
-    "dist": "NODE_ENV=production webpack",
-    "predist": "rimraf dist"
+    "serve": "./node_modules/.bin/webpack-dev-server -d --colors --inline --hot",
+    "dist": "NODE_ENV=production ./node_modules/.bin/webpack",
+    "predist": "./node_modules/.bin/rimraf dist"
   },
   "repository": {
     "type": "git",
