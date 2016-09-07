@@ -7,6 +7,7 @@ var APP_DIR = path.resolve(__dirname, 'app');
 var BUILD_PATH = 'bin';
 var BUILD_DIR = path.resolve(__dirname, BUILD_PATH);
 var CSS_FILE_NAME = 'styles.css';
+var extractTextPlugin = new ExtractTextPlugin(CSS_FILE_NAME);
 
 var config = {
   entry: APP_DIR + '/index.js',
@@ -46,8 +47,11 @@ var config = {
         ExtractTextPlugin.extract('style!css')
     }]
   },
-  plugins: [
-    new ExtractTextPlugin(CSS_FILE_NAME)
+  plugins: DEBUG ? [
+    extractTextPlugin
+  ] : [
+    extractTextPlugin,
+    new webpack.optimize.UglifyJsPlugin()
   ]
 };
 
