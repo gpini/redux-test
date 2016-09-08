@@ -18,6 +18,10 @@ var config = {
   output: {
     path: BUILD_DIR,
     filename: 'bundle.js',
+    publicPath: '/'
+  },
+  devServer: {
+    contentBase: BUILD_PATH + '/'
   },
   module: {
     loaders: [{
