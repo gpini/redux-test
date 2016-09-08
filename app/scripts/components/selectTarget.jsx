@@ -4,20 +4,14 @@ import { connect } from 'react-redux';
 import { hitHero } from '../actions/battlefield.js';
 import { HERO_STATUS } from '../reducers/battlefield.js';
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    self: ownProps.self,
-    battlefield: state.battlefield,
-    heroes: state.heroes
-  }
-};
+const mapStateToProps = (state, ownProps) => ({
+  self: ownProps.self,
+  battlefield: state.battlefield,
+  heroes: state.heroes
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onHeroHit: (sourceHero, targetHero) => {
-      dispatch(hitHero(sourceHero, targetHero));
-    }
-  }
+const mapDispatchToProps = {
+  onHeroHit: hitHero
 };
 
 class SelectTarget extends React.Component {

@@ -3,12 +3,8 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import { addHero } from '../actions/heroes.js'
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onHeroAdd: (name, hp, power) => {
-      dispatch(addHero(name, hp, power));
-    }
-  }
+const mapDispatchToProps = {
+  onHeroAdd: addHero
 };
 
 class AddHero extends React.Component {

@@ -1,13 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const mapStateToProps = (state, ownProps) => {
-  const availableHeroes = state.heroes.filter(ownProps.filter);
-  return {
-    heroes: availableHeroes,
-    onHeroSelect: ownProps.onHeroSelect
-  }
-};
+const mapStateToProps = (state, ownProps) => ({
+  heroes: state.heroes.filter(ownProps.filter),
+  onHeroSelect: ownProps.onHeroSelect
+});
 
 const NULL_VALUE = '';
 

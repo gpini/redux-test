@@ -3,12 +3,10 @@ import HeroSelect from './HeroSelect.jsx'
 import { connect } from 'react-redux';
 import { addHeroToBattle } from '../actions/battlefield.js';
 
-const mapStateToProps = (state) => {
-  return {
-    battlefield: state.battlefield,
-    heroes: state.heroes
-  }
-};
+const mapStateToProps = (state) => ({
+  battlefield: state.battlefield,
+  heroes: state.heroes
+});
 
 const mapDispatchToProps = (dispatch) => {
   return {

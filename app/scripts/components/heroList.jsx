@@ -2,11 +2,9 @@ import React from 'react';
 import Hero from './hero.jsx';
 import { connect } from 'react-redux';
 
-const mapStateToProps = (state) => {
-  return {
-    heroes: state.heroes
-  }
-};
+const mapStateToProps = (state) => ({
+  heroes: state.heroes
+});
 
 class HeroList extends React.Component {
     render() {

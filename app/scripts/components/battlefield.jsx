@@ -7,19 +7,13 @@ import { HERO_STATUS } from '../reducers/battlefield.js';
 import { connect } from 'react-redux';
 import { Map } from 'immutable';
 
-const mapStateToProps = (state) => {
-  return {
-    battlefield: state.battlefield,
-    heroes: state.heroes
-  }
-};
+const mapStateToProps = (state) => ({
+  battlefield: state.battlefield,
+  heroes: state.heroes
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onHeroHide: (hero) => {
-      dispatch(hideHero(hero));
-    }
-  }
+const mapDispatchToProps = {
+  onHeroHide: hideHero
 };
 
 class BattleField extends React.Component {
