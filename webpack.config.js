@@ -2,6 +2,7 @@ var webpack = require('webpack');
 var path = require('path');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var autoprefixer = require('autoprefixer');
 var DEBUG = process.env.NODE_ENV !== 'production' ? true : false;
 
 var APP_DIR = path.resolve(__dirname, 'app');
@@ -42,18 +43,23 @@ var config = {
       test: /\.sass$/,
       loader: DEBUG ?
         // inline css for hot loader support
-        'style!css?sourceMap!sass?sourceMap' :
+        'style!css?sourceMap!postcss!sass?sourceMap' :
         // extractes css for distribution
-        ExtractTextPlugin.extract('style', 'css!sass')
+        ExtractTextPlugin.extract('style', 'css!postcss!sass')
     }, {
       test: /\.css$/,
       loader: DEBUG ?
         // inline css for hot loader support
-        'style!css?sourceMap' :
+        'style!css?sourceMap!postcss' :
         // extractes css for distribution
-        ExtractTextPlugin.extract('style', 'css')
+        ExtractTextPlugin.extract('style', 'css!postcss')
     }]
   },
+  postcss: [
+    autoprefixer({
+      browsers: ['last 2 versions'] 
+    })
+  ],
   plugins: DEBUG ? [
     htmlPlugin
   ] : [
